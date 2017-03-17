@@ -185,18 +185,20 @@ void teak(int s) {
     alarm(1);
 }
 
-void controll(char key) {
-    if (key == KEY_DOWN) {
-        moveBlock(&block, 0, 1);
-    }
-    else if (key == KEY_RIGHT) {
-        moveBlock(&block, 1, 0);
-    }
-    else if (key == KEY_LEFT) {
-        moveBlock(&block, -1, 0);
-    }
-    else if (key == KEY_QUIT) {
-        shutdown(0);
+void controll(char key, Block *block) {
+    switch (key) {
+        case KEY_DOWN:
+            moveBlock(block, 0, 1);
+            break;
+        case KEY_RIGHT:
+            moveBlock(block, 1, 0);
+            break;
+        case KEY_LEFT:
+            moveBlock(block, -1, 0);
+            break;
+        case KEY_QUIT:
+            shutdown(0);
+            break;
     }
     render(&field);
 }
@@ -218,7 +220,7 @@ int main() {
 
     while (isWork) {
         read(0, &key, 1);
-        controll(key);
+        controll(key, &block);
     }
 
     br();

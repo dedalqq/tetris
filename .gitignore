@@ -1,0 +1,4 @@
+main.o
+display.o
+terminal.o
+tetris
